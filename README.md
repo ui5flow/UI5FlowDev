@@ -1,4 +1,3 @@
-![UI5FlowDev](https://github.com/ui5flow/UI5FlowDev/blob/master/images/UI5FlowDev-logo.png)
 
 # UI5FlowDev
 

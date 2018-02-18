@@ -1,0 +1,63 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <Dialog id="versionDeployBsp" title="{i18n>AppDetail.versionDeploy}" contentWidth="700px" contentHeight="3800px">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <f:SimpleForm minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" labelSpanL="1" labelSpanM="1" emptySpanL="0" emptySpanM="0" columnsL="1" columnsM="1" class="editableForm">
+                    <f:content>
+                        <RadioButtonGroup columns="2" selectedIndex="0" class="sapUiSmallMarginBottom" select="onBspApplicationProcType">
+                            <buttons>
+                                <RadioButton id="BspChange" text="{i18n>AppDetail.bspAppChange}" class="sapUiMediumMarginEnd" />
+                                <RadioButton id="BspNew" text="{i18n>AppDetail.bspAppNew}" />
+                            </buttons>
+                        </RadioButtonGroup>
+                        <Label text="{i18n>AppDetail.bspAppName}">
+                            <layoutData>
+                                <l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+                            </layoutData>
+                        </Label>
+                        <Input id="bspAppNameChange" value="" class="sapUiTinyMarginBottom" visible="true" valueStateText="{i18n>AppDetail.valueCheckBspAppName}" valueHelpRequest="onValueHelpVersionDeployBspApp" showValueHelp="true" valueHelpOnly="true" app:id="" >
+                        <layoutData>
+                            <l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+                        </layoutData>
+                        </Input>
+
+                        <Input id="bspAppNameNew" value="" class="sapUiTinyMarginBottom" visible="false" valueStateText="{i18n>AppDetail.valueCheckBspAppName}" liveChange="onBspAppNameCheck">
+                        <layoutData>
+                            <l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+                        </layoutData>
+                        </Input>
+
+                        <Label id="bspAppDescriptionLabel" text="{i18n>AppDetail.bspAppDescriptionLabel}" visible="false">
+                            <layoutData>
+                                <l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+                            </layoutData>
+                        </Label>
+                        <Input id="bspAppDescription" value="" class="sapUiTinyMarginBottom" visible="false" maxLength="60">
+                        <layoutData>
+                            <l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+                        </layoutData>
+                        </Input>
+
+                        <Label id="bspAppPackageLabel" text="{i18n>AppDetail.bspAppPackage}" visible="false">
+                            <layoutData>
+                                <l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+                            </layoutData>
+                        </Label>
+                        <Input id="bspAppPackage" value="" class="sapUiTinyMarginBottom" visible="false" valueStateText="{i18n>AppDetail.valueCheckBspAppPackage}" valueHelpRequest="onValueHelpVersionDeployPackage" showValueHelp="true" valueHelpOnly="true"/>
+                        <Label text="{i18n>AppDetail.sapTransport}">
+                            <layoutData>
+                                <l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+                            </layoutData>
+                        </Label>
+                        <Input id="deployTransport" valueHelpRequest="onValueHelpVersionDeployTransport" showValueHelp="true" valueHelpOnly="false" app:systemName="" valueStateText="{i18n>AppDetail.valueCheckDeployTransport}" enabled="false"/>
+                    </f:content>
+                </f:SimpleForm>
+            </VBox>
+        </content>
+        <buttons>
+            <Button id="bShowMessagesVersionDeploymentBsp" icon="sap-icon://message-popup" text="" type="Emphasized" press="showMessagePopover" visible="false" />
+            <Button id="bVersionDeployStartBsp" text="{i18n>AppDetail.deployStart}" icon="sap-icon://begin" press="onVersionDeployStartBsp" />
+            <Button id="bVersionDeployCloseBsp" text="{i18n>AppDetail.cancel}" icon="sap-icon://sys-cancel" press="onVersionDeployCloseBsp" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

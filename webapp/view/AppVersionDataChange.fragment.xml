@@ -1,0 +1,63 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+    <Dialog id="versionDataChange" title="{i18n>AppDetail.versionData}" contentWidth="700px">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <f:SimpleForm minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" labelSpanL="1" labelSpanM="1" emptySpanL="0" emptySpanM="0" columnsL="1" columnsM="1" class="editableForm">
+                    <f:content>
+                        <Label text="{i18n>AppDetail.versionName}" >
+                            <layoutData>
+                                <l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+                            </layoutData>
+                        </Label>                          
+                        <Input id="versionName" value="" class="sapUiTinyMarginBottom" valueStateText="{i18n>AppDetail.valueCheckVersionName}" liveChange="onVersionNameCheck">
+                        <layoutData>
+                            <l:GridData span="L8 M8 S8" />
+                        </layoutData>
+                        </Input>
+                        <Label text="{i18n>AppDetail.versionDescription}" >
+                            <layoutData>
+                                <l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+                            </layoutData>
+                        </Label>
+                        <TextArea id="versionDescription" value="" growing="true" rows="5" growingMaxLines="10" width="100%" />
+
+                        <Label text="{i18n>AppDetail.versionFolder}" >
+                            <layoutData>
+                                <l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+                            </layoutData>
+                        </Label>                          
+                        <Input id="versionFolder" value="" editable="false" valueStateText="{i18n>AppDetail.valueCheckVersionFolder}">
+                        <layoutData>
+                            <l:GridData span="L11 M11 S11" />
+                        </layoutData>
+                        </Input> 
+                        <Button id="bVersionFolder" icon="sap-icon://open-folder" press="onVersionFolderSelect" type="Emphasized"/>
+                        <Label text="{i18n>AppDetail.versionDataProxy}" >
+                            <layoutData>
+                                <l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+                            </layoutData>
+                        </Label>                          
+                        <Label text="{i18n>AppDetail.versionAppBuild}" >
+                            <layoutData>
+                                <l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+                            </layoutData>
+                        </Label>                          
+                        <CheckBox id="versionIsBuild" text="{i18n>AppDetail.versionAppBuildCompPreload}" selected="false" 
+                            select="onBuildSelection" enabled="false" />
+                        <Label id="versionCompPathLabel" text="{i18n>AppDetail.versionCompPath}" visible="false" >
+                            <layoutData>
+                                <l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+                            </layoutData>
+                        </Label>                          
+                        <Input id="versionCompPathValue" value="" class="sapUiTinyMarginBottom" visible="false" valueStateText="{i18n>AppDetail.valueCheckCompPathValue}" />
+                    </f:content>
+                </f:SimpleForm>
+            </VBox>
+        </content>
+        <buttons>
+            <Button id="bShowMessagesVersion" icon="sap-icon://message-popup" text="" type="Emphasized" press="showMessagePopover" visible="false" />
+            <Button id="bVersionSave" text="{i18n>AppDetail.save}" icon="sap-icon://accept" press="onVersionSave" />
+            <Button id="bVersionClose" text="{i18n>AppDetail.cancel}" icon="sap-icon://sys-cancel" press="onVersionClose" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

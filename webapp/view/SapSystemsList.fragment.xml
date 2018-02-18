@@ -1,0 +1,34 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <Dialog id="sapSystems" title="{i18n>AppDetail.sapSystemsTitle}" contentWidth="700px" contentHeight="650px" >
+        <content>
+            <l:VerticalLayout width="100%" class="sapUiNoContentPadding">
+              
+                <List id="sapSystemsList" items="{path: 'sapSystemsList>/systems', sorter : {
+                                            path : 'description', descending: false 
+                                         }}" mode="SingleSelectLeft" includeItemInSelection="true" selectionChange="onSapSystemSelection">
+                                         
+                    <headerToolbar>
+                        <Toolbar>
+                            <Title text="{i18n>AppsList.sapSystemsList}" />
+                            <ToolbarSpacer />
+                            <SearchField liveChange="onSapSystemListSearch" width="40%" />
+                        </Toolbar>
+                    </headerToolbar>
+                    
+                    <items>
+                        <StandardListItem title="{sapSystemsList>description}" description="{sapSystemsList>url}" type="Active" app:sapSystemName="{sapSystemsList>name}" app:sapSystemUrl="{sapSystemsList>url}"/>
+                    </items>
+                  
+                </List>
+
+            </l:VerticalLayout>
+        </content>
+        <buttons>
+            <Button id="bShowMessagesSapSystems" icon="sap-icon://message-popup" text="" type="Emphasized" press="showMessagePopover" visible="false" />
+            <Button id="bSapSystemsAdd" text="{i18n>AppDetail.sapSystemAdd}" icon="sap-icon://add" press="onSapSystemAdd" />
+            <Button id="bSapSystemsEdit" text="{i18n>AppDetail.sapSystemEdit}" icon="sap-icon://edit" press="onSapSystemChange" visible="false" />
+            <Button id="bSapSystemsDelete" text="{i18n>AppDetail.sapSystemDelete}" icon="sap-icon://delete" press="onSapSystemDelete" visible="false" />
+            <Button id="bSapSystemsClose" text="{i18n>AppDetail.cancel}" icon="sap-icon://sys-cancel" press="onSapSystemsClose" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

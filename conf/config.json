@@ -1,0 +1,10 @@
+{
+    "port": "8001",
+    "appsData": "../assets/data/apps.json",    
+    "appsDir": "assets/apps",
+    "versionsDir": "assets/versions",
+    "appWebappDir": "webapp",   
+    "sapSystems": "../assets/data/sapSystems.json",   
+    "reverseProxies": "../assets/data/reverseProxies.json",   
+    "bspAppUrlPattern": "{applicationServerUrl}/sap/bc/ui5_ui5/sap/{bspApplication}/index.html"
+}

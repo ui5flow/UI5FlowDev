@@ -1,0 +1,55 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <Dialog id="versionDeployHistory" title="{i18n>AppDetail.versionDeployHistory}" contentWidth="700px" contentHeight="400px">
+        <content>
+            <l:VerticalLayout id="versionDeploySyncLayout" class="sapUiNoContentPadding" width="100%">
+                <l:content>
+                    <Table id="idDeploymentsHistoryTable" items="{path: 'sapDeploymentsHistory>/', sorter : {
+                                            path : 'deployed_at', descending: true 
+                                         }}" class="sapUiNoContentPadding" fixedLayout="false" >
+                        <headerToolbar>
+                            <Toolbar>
+                                <Title text="{i18n>AppDetail.versionDeployHistoryListTitle}" level="H2" />
+                            </Toolbar>
+                        </headerToolbar>
+                        <columns>
+                            <Column demandPopin="true" minScreenWidth="Tablet" width="auto" mergeDuplicates="false">
+                                <Text text="{i18n>AppDetail.histBspApplication}" hAlign="Begin" />
+                            </Column>
+                            <!--
+                            <Column demandPopin="true" minScreenWidth="Tablet" width="auto" hAlign="Begin">
+                                <Text text="{i18n>AppDetail.histBspPackage}" />
+                            </Column>
+                            -->
+                            <Column demandPopin="true" minScreenWidth="Tablet" hAlign="Begin" width="20%">
+                                <Text text="{i18n>AppDetail.histBspTransport}" />
+                            </Column>
+                            <Column demandPopin="true" minScreenWidth="Tablet" hAlign="Begin" width="20%">
+                                <Text text="{i18n>AppDetail.histSystemDescription}" />
+                            </Column>
+                            <Column demandPopin="true" minScreenWidth="Tablet" hAlign="Begin" width="20%">
+                                <Text text="{i18n>AppDetail.histDeployedOn}" />
+                            </Column>
+                            
+                        </columns>
+                        <items>
+                            <ColumnListItem >
+                                <cells>
+                                    <ObjectIdentifier title="{sapDeploymentsHistory>bspApplication}"  titleActive="true" titlePress="onDeploymentHistoryItemPress" app:bspAppUrl="{sapDeploymentsHistory>bspAppUrl}"/>
+                                    <!-- <Text text="{sapDeploymentsHistory>bspAppPackage}" wrapping="false" /> -->
+                                    <Text text="{sapDeploymentsHistory>bspTransport}" wrapping="false" />
+                                    <Text text="{sapDeploymentsHistory>systemDescription}" wrapping="false" />
+                                    <Text text="{path: 'sapDeploymentsHistory>deployed_at',
+                                                 formatter: '.formatter.getFormattedDateTime'
+                                    }" wrapping="false" />                                    
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </l:content>
+            </l:VerticalLayout>
+        </content>
+        <buttons>
+            <Button id="bVersionDeployHistoryCancel" text="{i18n>AppDetail.deployHistoryCancel}" icon="sap-icon://sys-cancel" press="onVersionDeploymentHistoryClose" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

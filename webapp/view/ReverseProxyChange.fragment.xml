@@ -1,0 +1,102 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+    <Dialog id="reverseProxyChange" title="{i18n>AppDetail.sapSystemTitle}" contentWidth="900px" contentHeight="600px">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <f:SimpleForm minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" labelSpanL="1" labelSpanM="1" emptySpanL="0" emptySpanM="0" columnsL="1" columnsM="1" class="editableForm">
+                    <f:content>
+                        <Label text="{i18n>ReverseProxy.reverseProxyDescription}">
+                            <layoutData>
+                                <l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+                            </layoutData>
+                        </Label>
+                        <Input id="reverseProxyDescriptionText" value="" class="sapUiTinyMarginBottom">
+                        <layoutData>
+                            <l:GridData span="L12 M12 S12" />
+                        </layoutData>
+                        </Input>
+                        <Label text="{i18n>ReverseProxy.reverseProxyTargetHost}">
+                            <layoutData>
+                                <l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+                            </layoutData>
+                        </Label>
+                        <Input id="reverseProxyTargetHost" value="" class="sapUiTinyMarginBottom" valueStateText="{i18n>ReverseProxy.valueCheckTargetHost}">
+                        <layoutData>
+                            <l:GridData span="L8 M8 S8" />
+                        </layoutData>
+                        </Input>
+                        <Label text="{i18n>ReverseProxy.reverseProxyPath}">
+                            <layoutData>
+                                <l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+                            </layoutData>
+                        </Label>
+                        <Input id="reverseProxyPath" value="" class="sapUiTinyMarginBottom" valueStateText="{i18n>ReverseProxy.valueCheckPath}">
+                        <layoutData>
+                            <l:GridData span="L12 M12 S12" />
+                        </layoutData>
+                        </Input>
+                        <Label text="{i18n>ReverseProxy.reverseProxyPathRewrite}">
+                            <layoutData>
+                                <l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+                            </layoutData>
+                        </Label>
+                        <Input id="reverseProxyPathRewriteFrom" value="" class="sapUiTinyMarginBottom">
+                        <layoutData>
+                            <l:GridData span="L6 M6 S6" />
+                        </layoutData>
+                        </Input>
+                        <Input id="reverseProxyPathRewriteTo" value="" class="sapUiTinyMarginBottom">
+                        <layoutData>
+                            <l:GridData span="L6 M6 S6" />
+                        </layoutData>
+                        </Input>
+                        <Label text="{i18n>ReverseProxy.reverseProxyHeaders}">
+                            <layoutData>
+                                <l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+                            </layoutData>
+                        </Label>                        
+                        <Table id="reverseProxyHeadersList" items="{proxyHeaders>/}" class="sapUiNoContentPadding" width="100%">
+                            <headerToolbar>
+                                <Toolbar>
+                                    <ToolbarSpacer/>
+                                    <Button tooltip="{i18n>ReverseProxy.addHeaderTooltip}" icon="sap-icon://add" 
+                                        press="onReverseProxyAddHeader" text="{i18n>ReverseProxy.addHeader}" />
+                                    <Button tooltip="{i18n>ReverseProxy.addHeaderBasicAuthTooltip}" icon="sap-icon://add" 
+                                        press="onReverseProxyAddBasicAuth" text="{i18n>ReverseProxy.addHeaderBasicAuth}" />    
+                                </Toolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column width="35%">
+                                    <Text text="{i18n>ReverseProxy.proxyHeadersKey}" />
+                                </Column>
+                                <Column width="60%">
+                                    <Text text="{i18n>ReverseProxy.proxyHeadersValue}" />
+                                </Column>
+                                <Column demandPopin="true" minScreenWidth="Desktop" width="auto">
+                                    <Text text="" />
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Input enabled="true" value="{proxyHeaders>key}" />
+                                        <Input enabled="true" value="{proxyHeaders>value}" />
+                                        <Button text="" tooltip="{i18n>ReverseProxy.removeHeaderTooltip}" icon="sap-icon://decline" press="onReverseProxyRemoveHeader" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                            <layoutData>
+                                <l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+                            </layoutData>                            
+                        </Table>
+                        
+                    </f:content>
+                </f:SimpleForm>
+            </VBox>
+        </content>
+        <buttons>
+            <Button id="bShowMessagesReverseProxy" icon="sap-icon://message-popup" text="" type="Emphasized" press="showMessagePopover" visible="false" />
+            <Button id="bReverseProxySave" text="{i18n>AppDetail.save}" icon="sap-icon://accept" press="onReverseProxyDetailSave" />
+            <Button id="bReverseProxyClose" text="{i18n>AppDetail.cancel}" icon="sap-icon://sys-cancel" press="onReverseProxyDetailClose" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

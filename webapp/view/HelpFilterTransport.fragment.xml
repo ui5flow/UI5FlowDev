@@ -1,0 +1,19 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<SelectDialog
+		title="{i18n>AppDetail.helperTitleTransport}"
+		class="sapUiPopupWithPadding"
+		items="{path: 'sapTransportsList>/',
+            sorter: { path: 'id' }}"
+		search="onValueHelpTransportSearch"
+		confirm="onValueHelpTransportFilterClose"
+		multiSelect="false"
+		cancel="onValueHelpTransportFilterClose">
+		<StandardListItem
+			iconDensityAware="false"
+			iconInset="false"
+			title="{sapTransportsList>id}"
+			description="{sapTransportsList>description}" app:id="{sapTransportsList>id}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

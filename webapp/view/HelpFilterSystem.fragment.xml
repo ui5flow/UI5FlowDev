@@ -1,0 +1,19 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<SelectDialog
+		title="{i18n>AppDetail.helperTitleSystem}"
+		class="sapUiPopupWithPadding"
+		items="{path: 'sapSystemsList>/systems',
+            sorter: { path: 'created_at' }}"
+		search="onValueHelpSystemSearch"
+		confirm="onValueHelpSystemFilterClose"
+		multiSelect="false"
+		cancel="onValueHelpSystemFilterClose">
+		<StandardListItem
+			iconDensityAware="false"
+			iconInset="false"
+			title="{sapSystemsList>description}"
+			description="{sapSystemsList>url}" app:bspUrlPattern="{sapSystemsList>bsp_url_pattern}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

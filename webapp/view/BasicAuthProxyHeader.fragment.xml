@@ -1,0 +1,29 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <Dialog id="reverseProxyBasicAuth" title="{i18n>ReverseProxy.BasicAuthTitle}" >
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <f:SimpleForm minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" labelSpanL="1" labelSpanM="1" emptySpanL="0" emptySpanM="0" columnsL="1" columnsM="1" class="editableForm">
+                    <f:content>
+                        <Label text="{i18n>ReverseProxy.BasicAuthUser}" >
+                            <layoutData>
+                                <l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+                            </layoutData>
+                        </Label>    
+                        <Input id="reverseProxyBasicAuthUser" class="sapUiTinyMarginBottom" visible="true" />        
+                        <Label text="{i18n>ReverseProxy.BasicAuthPassword}" >
+                            <layoutData>
+                                <l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+                            </layoutData>
+                        </Label>                                                  
+                        <Input id="reverseProxyBasicAuthPassword" type="Password" value="" class="sapUiTinyMarginBottom" visible="true" />
+                    </f:content>
+                </f:SimpleForm>
+            </VBox>
+        </content>
+        <buttons>
+            <Button text="{i18n>ReverseProxy.BasicAuthHeaderAdd}" icon="sap-icon://accept" press="onReverseProxyHeaderBasicConfirm" />
+            <Button text="{i18n>ReverseProxy.BasicAuthHeaderCancel}" icon="sap-icon://sys-cancel" 
+                press="onReverseProxyHeaderBasicAuthClose" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

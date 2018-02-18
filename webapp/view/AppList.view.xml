@@ -1,0 +1,71 @@
+<mvc:View controllerName="com.oprtnl.ui5locserv.controller.AppList" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <Page id="signup" showNavButton="false" title="{i18n>AppList.title}">
+        <headerContent>
+            <MenuButton text="{i18n>AppList.menuSettings}" icon="sap-icon://settings" >
+                <menu>
+                    <Menu itemSelected="onUserMenuAction">
+                        <items>                           
+                            <MenuItem id="menuSapSystems" text="{i18n>AppList.menuSapSystems}" icon="sap-icon://sap-logo-shape" app:action="onSapSystemsList"/>
+                            <MenuItem id="menuServiceProxy" text="{i18n>AppList.menuServiceProxy}" icon="sap-icon://repost" app:action="onServiceProxy" />                            
+                        </items>
+                    </Menu>
+                </menu>
+            </MenuButton>
+        </headerContent>        
+        <content>
+            <l:VerticalLayout width="100%" class="sapUiNoContentPadding">
+                <List id="appList" backgroundDesign="Transparent" mode="SingleSelectMaster" growing="true" growingThreshold="10" growingScrollToLoad="true" items="{path: 'applicationsList>/applications', sorter : {
+                                            path : 'updated_at', descending: true 
+                                         }}" noDataText="{i18n>AppsList.noDataInList}" itemPress="onCustomListItemPress">
+                    <headerToolbar>
+                        <Toolbar>
+                            <Title text="{i18n>AppsList.titleAll}" />
+                            <ToolbarSpacer />
+                            <SearchField liveChange="onListSearch" width="40%" />
+                        </Toolbar>
+                    </headerToolbar>
+                    <CustomListItem id="custListItem" type="Active" app:appNameItem="{applicationsList>name}" >
+                        <l:BlockLayout id="listBlockLayuout">
+                            <l:BlockLayoutRow accentCells="dataList">
+                                <l:BlockLayoutCell class="sapUiNoContentPadding" width="3">
+                                    <VBox class="sapUiMediumMarginBegin sapUiSmallMarginTopBottom">
+                                        <HBox>
+                                            <Link text="{
+                                 path: 'applicationsList>display_name',
+                                 formatter: '.formatter.getListTitle'
+                                 }" emphasized="true" class="sapUiTinyMarginBottom" press="onAppTitlePress" app:appName="{applicationsList>name}"  />
+                                        </HBox>
+                                        <Text text="{applicationsList>description}" class="sapUiSmallMarginBottom" />
+                                    </VBox>
+                                </l:BlockLayoutCell>
+                                <l:BlockLayoutCell class="sapUiNoContentPadding" width="1">
+                                    <HBox>
+                                        <VBox class="sapUiMediumMarginBegin sapUiSmallMarginTopBottom" width="80%">
+                                            <Text class="sapUiSmallMarginBottom" text="{i18n>AppsList.createdOn} {
+                                                                    path: 'applicationsList>created_at',
+                                                                    formatter: '.formatter.getFormattedDateTime'
+                                                                    }" />
+                                            <Text class="sapUiSmallMarginBottom" text="{i18n>AppsList.changedOn} {
+                                                                    path: 'applicationsList>updated_at',
+                                                                    formatter: '.formatter.getFormattedDateTime'
+                                                                    }" />
+                                            <Link class="sapUiTinyMarginBottom" text="{applicationsList>app_directory}" press="onRelUrlPress" app:appUrl="{applicationsList>app_url}"/>                                                                   
+                                        </VBox>
+                                    </HBox>
+                                </l:BlockLayoutCell>
+                            </l:BlockLayoutRow>
+                        </l:BlockLayout>
+                    </CustomListItem>
+                </List>
+            </l:VerticalLayout>
+        </content>
+        <footer>
+            <Toolbar>
+                <core:HTML content='&lt;div  class=&quot;ui5LogoFooter sapUiSmallMarginBegin&quot; &gt; UI5FlowDev&lt;/div&gt;'></core:HTML>
+                <Button id="bShowMessages" icon="sap-icon://message-popup" text="" type="Emphasized" press="showMessagePopover" visible="false" />
+                <ToolbarSpacer/>
+                <Button icon="sap-icon://add" text="{i18n>AppsList.addNew}" press="onApplicationAddNewOpen" />
+            </Toolbar>
+        </footer>
+    </Page>
+</mvc:View>

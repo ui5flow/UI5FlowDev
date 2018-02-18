@@ -1,0 +1,48 @@
+{
+  "name": "UI5FlowDev",
+  "version": "1.1.0",
+  "description": "UI5FlowDev allows you to manage and run your UI5 applications on a local server with reverse-proxy support. It also enables you to build your applications and deploy them to SAP NetWeaver ABAP.",
+  "author": "peter.orgon@ui5flow.com",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "compression": "^1.6.2",
+    "express": "^4.15.2",
+    "express-session": "^1.15.4",
+    "fs-extra": "^5.0.0",
+    "grunt-contrib-uglify": "^3.3.0",
+    "http-proxy": "^1.16.2",
+    "isbinaryfile": "^3.0.2",
+    "jsonfile": "^4.0.0",
+    "maxmin": "^2.1.0",
+    "node-minify": "^2.0.3",
+    "node-uuid": "^1.4.8",
+    "opn": "^5.1.0",
+    "path": "^0.12.7",
+    "pretty-data": "^0.40.0",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2",
+    "shelljs": "^0.7.8",
+    "slash": "^1.0.0",
+    "uglify-js": "^2.7.5",
+    "winston": "^2.4.0",
+    "xmldoc": "^1.1.0"
+  },
+  "keywords": [
+    "ui5flow",
+    "UI5flow",
+    "UI5FlowDev",
+    "OpenUI5",
+    "SAPUI5",
+    "SAP",
+    "WebIDE"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "https://github.com/ui5flow/UI5FlowDev.git",
+  "homepage": "https://github.com/ui5flow/UI5FlowDev.git",
+  "bin": {
+    "ui5flow": "./bin/start.js"
+  }
+}

@@ -1,0 +1,149 @@
+<mvc:View controllerName="com.oprtnl.ui5locserv.controller.AppDetail" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <Page id="appDetail" showNavButton="true" title="{i18n>AppDetail.title}" navButtonPress="onBackButton" navButtonType="Back">
+        <headerContent>
+            <MenuButton text="{i18n>AppList.menuSettings}" icon="sap-icon://settings">
+                <menu>
+                    <Menu itemSelected="onUserMenuAction">
+                        <items>
+                            <MenuItem id="menuSapSystems" text="{i18n>AppList.menuSapSystems}" icon="sap-icon://sap-logo-shape" app:action="onSapSystemsList" />
+                            <MenuItem id="menuServiceProxy" text="{i18n>AppList.menuServiceProxy}" icon="sap-icon://repost" app:action="onServiceProxy" />
+                        </items>
+                    </Menu>
+                </menu>
+            </MenuButton>
+        </headerContent>
+        <content>
+            <ObjectHeader id="appDetailHeader" responsive="true" fullScreenOptimized="true" binding="{path: 'applicationDetail>/'}" intro="{applicationDetail>description}" title="{applicationDetail>display_name}" titleActive="false" showMarkers="true" markFlagged="false" markFavorite="false" backgroundDesign="Translucent">
+                <attributes>
+                    <ObjectAttribute title="{i18n>AppDetail.appCreatedOn}" text="{
+                                                                    path: 'applicationDetail>created_at',
+                                                                    formatter: '.formatter.getFormattedDateTime'
+                                                                  }" active="false" />
+                    <ObjectAttribute title="{i18n>AppDetail.appChangedOn}" text="{
+                                                                    path: 'applicationDetail>updated_at',
+                                                                    formatter: '.formatter.getFormattedDateTime'
+                                                                  }" active="false" />
+                    <ObjectAttribute title="{i18n>AppDetail.gitRepoUrl}" text="{applicationDetail>remote_git_url}" press="onObjectHeaderGitUrl" active="false" />
+                    <ObjectAttribute title="{i18n>AppDetail.appURL}" text="{
+                                                                    path: 'applicationDetail>app_directory'
+                                                                  }" active="true" press="onRelUrlPress" app:appUrl="{applicationDetail>app_url}" />
+                </attributes>
+                <headerContainer>
+                    <IconTabBar id="appDetailHeaderTabBar" selectedKey="tabDetail" upperCase="true" class="sapUiNoContentPadding" expandable="false" select="onTabSelection">
+                        <items>
+                            <IconTabFilter text="{i18n>AppDetail.tabDetail}" key="tabDetail">
+                                <content>
+                                    <l:VerticalLayout id="appDetailVertLayout" class="sapUiContentPadding" width="100%">
+                                    </l:VerticalLayout>
+                                </content>
+                            </IconTabFilter>
+                            <IconTabFilter text="{i18n>AppDetail.tabVersion}" key="tabVersion">
+                                <content>
+                                    <Panel width="auto">
+                                        <VBox>
+                                            <HBox>
+                                                <Text id="noVersion" text="{i18n>AppDetail.noVersion}" visible="true" />
+                                                <Text id="hasVersion" text="{i18n>AppDetail.hasVersion}" visible="false" />
+                                                <!--
+                                            <Text id="hasTemplateTimeStamp" text="{
+                                                                    path: 'applicationDetail>template/assigned_at',
+                                                                    formatter: '.formatter.getFormattedDateTime'
+                                                                  }" visible="false" class="sapUiTinyMarginBegin"/>
+                                                                -->
+                                            </HBox>
+                                        </VBox>
+                                    </Panel>
+                                    <l:VerticalLayout id="versionVertLayout" class="sapUiNoContentPadding" width="100%">
+                                        <l:content>
+                                            <List id="versionList" items="{path: 'applicationDetail>versions/', sorter : {
+                                            path : 'updated_at', descending: true 
+                                         }}" mode="SingleSelectLeft" includeItemInSelection="true" selectionChange="onVersionItemSelection">
+                                                <CustomListItem app:versionId="{applicationDetail>version_directory}">
+                                                    <VBox>
+                                                        <HBox>
+                                                            <VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" width="70%">
+                                                                <HBox>
+                                                                    <Link text="{applicationDetail>name}" emphasized="true" class="sapUiTinyMarginBottom" target="_blank" href="{
+                                                                    path: 'applicationDetail>version_directory',
+                                                                    formatter: '.formatter.getVersionUrl'
+                                                                    }" />
+                                                                </HBox>
+                                                                <Text text="{applicationDetail>description}" class="sapUiSmallMarginBottom" />
+                                                                <HBox>
+                                                                    <Link text="{
+                                                                    path: 'applicationDetail>version_directory',
+                                                                    formatter: '.formatter.getVersionUrl'
+                                                                    }" enabled="true" class="sapUiTinyMarginBottom" target="_blank" href="{
+                                                                    path: 'applicationDetail>version_directory',
+                                                                    formatter: '.formatter.getVersionUrl'
+                                                                    }" />
+                                                                </HBox>
+                                                            </VBox>
+                                                            <VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" width="30%">
+                                                                <Text id="versionCreatedAtList" class="sapUiSmallMarginBottom" text="{i18n>AppDetail.versionCreatedOn} {
+                                                                    path: 'applicationDetail>created_at',
+                                                                    formatter: '.formatter.getFormattedDateTime'
+                                                                    }" />
+                                                                <Text id="versionChangedAtList" class="sapUiSmallMarginBottom" text="{i18n>AppDetail.versionChangedOn} {
+                                                                    path: 'applicationDetail>updated_at',
+                                                                    formatter: '.formatter.getFormattedDateTime'
+                                                                    }" />
+                                                                <Link id="versionDeveloperList" text="{applicationDetail>developer}" class="sapUiSmallMarginBottom" press="onProfileLinkView" app:userId="{applicationDetail>developer}" />
+                                                            </VBox>
+                                                        </HBox>
+                                                        <MessageStrip id="lastDeploymentMessageStrip" text="{i18n>AppDetail.versionSapDeploymentInfo1} {applicationDetail>last_deployment_info/systemDescription} {i18n>AppDetail.versionSapDeploymentInfo2} {path: 'applicationDetail>last_deployment_info/deployed_at' ,
+                                                                    formatter: '.formatter.getFormattedDateTime'} /" type="Success" showIcon="true" customIcon="sap-icon://sap-logo-shape" class="sapUiMediumMarginBottom sapUiSmallMarginBeginEnd" visible="{
+                                                                        path: 'applicationDetail>last_deployment_info',
+                                                                        formatter: '.formatter.setLastDeployment'
+                                                                    }">
+                                                            <link>
+                                                            <Link text="{i18n>AppDetail.versionSapDeploymentHistoryLink}" press="onVersionDeploymentHistorySelection" app:versionId="{applicationDetail>version_directory}" />
+                                                            </link>
+                                                        </MessageStrip>
+                                                    </VBox>
+                                                </CustomListItem>
+                                            </List>
+                                        </l:content>
+                                    </l:VerticalLayout>
+                                </content>
+                            </IconTabFilter>
+                            <IconTabFilter text="{i18n>AppDetail.tabSettings}" key="tabSettings">
+                                <content>
+                                    <Panel width="auto">
+                                        <FlexBox alignItems="Start" justifyContent="SpaceBetween">
+                                            <items>
+                                                <VBox>
+                                                    <Label design="Bold" class="sapUiTinyMarginBottom" text="{i18n>AppDetail.deleteApplicationHeaderTxt}" />
+                                                    <ObjectStatus text="{i18n>AppDetail.deleteApplicationDescTxt}" state="Error" />
+                                                </VBox>
+                                                <Button id="bApplicationDelete" text="{i18n>AppDetail.appDelete}" visible="true" press="onApplicationDelete" />
+                                            </items>
+                                        </FlexBox>
+                                    </Panel>
+                                </content>
+                            </IconTabFilter>
+                        </items>
+                    </IconTabBar>
+                </headerContainer>
+            </ObjectHeader>
+        </content>
+        <footer>
+            <Toolbar>
+                <!--<Image src="./images/logo-a-nobr.png" height="25px" class="sapUiSmallMarginBegin" />-->
+                <core:HTML content='&lt;div  class=&quot;ui5LogoFooter sapUiSmallMarginBegin&quot; &gt; UI5FlowDev&lt;/div&gt;'></core:HTML>
+                <Button id="bShowMessages" icon="sap-icon://message-popup" text="" type="Emphasized" press="showMessagePopover" visible="false" />
+                <ToolbarSpacer/>
+                <Button icon="sap-icon://edit" id="bApplicationChange" text="{i18n>AppDetail.appEdit}" press="onDetailDataChange" />
+                <Button icon="sap-icon://save" id="bDetailDataSave" text="{i18n>AppDetail.appDetailSave}" press="onDetailDataSave" visible="false" />
+                <Button icon="sap-icon://decline" id="bDetailDataCancel" text="{i18n>AppDetail.appDetailCancel}" press="onDetailDataCancel" visible="false" />
+                <Button id="bDeploySapVersion" icon="sap-icon://sap-logo-shape" text="{i18n>AppDetail.appVersionSapDeploy}" press="onVersionSapDeploy" visible="false" />
+                <Button id="bCreateVersion" icon="sap-icon://add" text="{i18n>AppDetail.appVersionCreate}" press="onVersionCreate" visible="false" />
+                <Button id="bChangeVersion" icon="sap-icon://edit" text="{i18n>AppDetail.appVersionEdit}" press="onVersionChange" visible="false" />
+                <Button id="bDeleteVersion" icon="sap-icon://delete" text="{i18n>AppDetail.appVersionDelete}" press="onVersionDelete" visible="false" />
+                <Button id="bCreateDataProvider" icon="sap-icon://add" text="{i18n>Ui5AppsDetail.appDataProviderCreate}" press="onDataProviderCreate" visible="false" />
+                <Button id="bChangeDataProvider" icon="sap-icon://edit" text="{i18n>Ui5AppsDetail.appDataProviderEdit}" press="onDataProviderChange" visible="false" />
+                <Button id="bDeleteDataProvider" icon="sap-icon://delete" text="{i18n>Ui5AppsDetail.appDataProviderDelete}" press="onDataProviderDelete" visible="false" />
+            </Toolbar>
+        </footer>
+    </Page>
+</mvc:View>

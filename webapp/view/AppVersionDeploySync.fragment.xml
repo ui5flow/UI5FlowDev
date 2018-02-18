@@ -1,0 +1,56 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <Dialog id="versionDeploySync" title="{i18n>AppDetail.versionDeploy}" contentWidth="950px">
+        <content>
+            <l:VerticalLayout id="versionDeploySyncLayout" class="sapUiNoContentPadding" width="100%">
+                <l:content>
+                    <List id="versionDeploySyncList" items="{path: 'deploySyncCheckList>/resourcesSync', sorter : {
+                                            path : 'id', descending: false 
+                                         }}" >
+                        <headerToolbar>
+                            <Toolbar>
+                                <Title text="{i18n>AppDetail.syncObjectFolderTitle}" />
+                                <ToolbarSpacer />
+                            </Toolbar>
+                        </headerToolbar>                                         
+                        <CustomListItem app:syncItemId="{deploySyncCheckList>id}">
+                            <HBox>
+                                <VBox class="sapUiTinyMarginBegin sapUiTinyMarginTopBottom" width="85%">
+                                    <HBox>
+                                        <core:Icon src="sap-icon://document" class="iconSize1 sapUiSmallMarginBeginEnd" color="Neutral" tooltip="{i18n>AppDetail.syncObjectFile}" visible="{
+                                                                        path: 'deploySyncCheckList>type',
+                                                                        formatter: '.formatter.getSyncObjectFile'
+                                                                    }" />
+                                        <core:Icon src="sap-icon://folder-blank" class="iconSize1 sapUiSmallMarginBeginEnd" color="Neutral" tooltip="{i18n>AppDetail.syncObjectFolder}" visible="{
+                                                                        path: 'deploySyncCheckList>type',
+                                                                        formatter: '.formatter.getSyncObjectFolfer'
+                                                                    }" />
+                                        <Text text="{
+                                                                    path: 'deploySyncCheckList>id',
+                                                                    formatter: '.formatter.decodeUri'
+                                                                    }" />
+                                    </HBox>                                    
+                                </VBox>
+                                <VBox class="sapUiTinyMarginBegin sapUiTinyMarginTopBottom" width="15%">
+                                    <ObjectStatus                                        
+                                        text="{
+                                                path: 'deploySyncCheckList>syncMode',
+                                                formatter: '.formatter.deploySyncStatusText'                                                
+                                                }"
+                                        state="{
+                                                path: 'deploySyncCheckList>syncMode',
+                                                formatter: '.formatter.deploySyncStatus'
+                                                }" />                                    
+                                </VBox>
+                            </HBox>
+                        </CustomListItem>
+                    </List>
+                </l:content>
+            </l:VerticalLayout>
+        </content>
+        <buttons>
+            <Button id="bShowMessagesVersionDeploymentSync" icon="sap-icon://message-popup" text="" type="Emphasized" press="showMessagePopover" visible="false" />
+            <Button id="bVersionDeploySyncOk" text="{i18n>AppDetail.deploySyncOk}" icon="sap-icon://begin" press="onVersionDeploySyncOk" />
+            <Button id="bVersionDeploySyncCancel" text="{i18n>AppDetail.deploySyncCancel}" icon="sap-icon://sys-cancel" press="onVersionDeploySyncCancel" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

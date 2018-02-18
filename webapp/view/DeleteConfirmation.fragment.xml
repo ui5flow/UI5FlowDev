@@ -1,0 +1,30 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+    <Dialog id="appDeleteConfirm" title="{i18n>AppDetail.deleteConfirmTitle}" contentWidth="400px">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <f:SimpleForm maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="1" columnsM="1" class="editableForm" >
+                    <f:content>
+                        <VBox>
+                    
+                        <MessageStrip
+                            text="{i18n>AppDetail.deleteConfirmStripText}"
+                            type="Error"
+                            showIcon="false"
+                            showCloseButton="false"
+                            class="sapUiTinyMarginBottom sapUiSizeCompact">
+                        </MessageStrip>
+                        
+                        <Text text="{i18n>AppDetail.deleteConfirmText}" class="sapUiNoContentPadding sapUiSizeCompact sapUiSmallMarginBottom" />
+                        <CheckBox id="confirmCheck" valueState="Error" text="{i18n>AppDetail.deleteConfirmLabel}" select="onCheckDeleteConfirmation" />
+                        
+                        </VBox>  
+                    </f:content>
+                </f:SimpleForm>
+            </VBox>
+        </content>
+        <buttons>
+            <Button id="bAppDeleteConfirm" text="{i18n>AppDetail.appDeleteConfirm}" icon="sap-icon://accept" press="onApplicationDeleteConfirmed" enabled="false"/>
+            <Button id="bAppDeleteCancel" text="{i18n>AppDetail.appDeleteCancel}" icon="sap-icon://decline" press="onApplicationDeleteCancel" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

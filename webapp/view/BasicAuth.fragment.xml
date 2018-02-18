@@ -1,0 +1,41 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <Dialog id="deploymentBasicAuth" title="{i18n>AppDetail.BasicAuthTitle}" >
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <f:SimpleForm minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" labelSpanL="1" labelSpanM="1" emptySpanL="0" emptySpanM="0" columnsL="1" columnsM="1" class="editableForm">
+                    <f:content>
+                        <Label text="{i18n>AppDetail.sapSystem}" >
+                            <layoutData>
+                                <l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+                            </layoutData>
+                        </Label>                          
+                        <Input id="sapSystemDescription" value="" class="sapUiTinyMarginBottom" editable="false" >
+                        <layoutData>
+                            <l:GridData span="L8 M8 S8" />
+                        </layoutData>
+                        </Input>
+                        <Label text="{i18n>AppDetail.BasicAuthUser}" >
+                            <layoutData>
+                                <l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+                            </layoutData>
+                        </Label>    
+                        <Input id="sapDeployUser" class="sapUiTinyMarginBottom" visible="true" valueStateText="{i18n>AppDetail.valueCheckSapUser}" submit="onVersionDeployAuthConfirm"/>        
+
+                        <Label text="{i18n>AppDetail.BasicAuthPassword}" >
+                            <layoutData>
+                                <l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+                            </layoutData>
+                        </Label>                                                  
+                        <Input id="sapDeployPassword" type="Password" value="" class="sapUiTinyMarginBottom" visible="true" valueStateText="{i18n>AppDetail.valueCheckSapPassword}" submit="onVersionDeployAuthConfirm"/>
+                    </f:content>
+                </f:SimpleForm>
+            </VBox>
+        </content>
+        <buttons>
+            <Button id="bShowMessagesDeploymentAuthentication" icon="sap-icon://message-popup" text="" type="Emphasized" press="showMessagePopover" visible="false" />
+            <Button id="bVersionDeployAuthenticationConfirm" text="{i18n>AppDetail.BasicAuthConfirm}" icon="sap-icon://accept" press="onVersionDeployAuthConfirm" />
+            <Button id="bVersionDeployAuthenticationClose" text="{i18n>AppDetail.BasicAuthCancel}" icon="sap-icon://sys-cancel" 
+                press="onVersionDeployAuthClose" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

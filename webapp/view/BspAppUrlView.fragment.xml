@@ -1,0 +1,19 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+    <ResponsivePopover id="bspAppUrlView" title="{i18n>AppDetail.bspAppUrl}" class="sapUiPopupWithPadding" placement="Bottom" 
+    	contentWidth="800px" >
+    		<beginButton>
+    			<Button icon="sap-icon://begin" text="{i18n>AppDetail.bspAppUrlLink}" press="onBspUrlLink" />
+    		</beginButton>	
+        <endButton>
+            
+            <Button icon="sap-icon://copy" text="{i18n>AppDetail.bspAppUrlCopy}" press="onBspUrlCopy" />
+        </endButton>
+        <content>
+            <Input id="bspAppUrl" value="" class="sapUiTinyMarginTopBottom">
+            <layoutData>
+                <l:GridData span="L12 M12 S12" />
+            </layoutData>
+            </Input>
+        </content>
+    </ResponsivePopover>
+</core:FragmentDefinition>

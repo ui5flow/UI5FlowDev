@@ -1,0 +1,17 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+    <Page class="sapUiFioriObjectPage" title="{i18n>NotFound.notFoundTitle}">
+        <content>
+            <FlexBox alignItems="Center" justifyContent="Center" height="100%">
+                <items>
+                    <Label class="spacerTop" textAlign="Center" text="{i18n>NotFound.notFoundText}" />
+                </items>
+            </FlexBox>
+        </content>
+        <footer>
+            <Toolbar>
+                <Image src="./images/logo-a-nobr.png" height="25px" class="sapUiSmallMarginBegin"/>
+                <ToolbarSpacer/>
+            </Toolbar>    
+        </footer>
+    </Page>
+</mvc:View>

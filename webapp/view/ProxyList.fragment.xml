@@ -1,0 +1,29 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <Dialog id="proxyList" title="{i18n>AppList.reverseProxyTitle}" contentWidth="950px" contentHeight="650px">
+        <content>
+            <l:VerticalLayout id="dataProviderVertLayout" class="sapUiNoContentPadding" width="100%">
+                <l:content>
+                    <List id="dataProviderList" items="{ path: 'reverseProxyList>/proxies', sorter : {
+                                            path : 'description', descending: false 
+                                         }}" mode="SingleSelectLeft" includeItemInSelection="true" selectionChange="onDataProviderSetupSelection">
+		                    <headerToolbar>
+		                        <Toolbar>
+		                            <Title text="{i18n>AppsList.reverseProxyList}" />
+		                            <ToolbarSpacer />
+		                            <SearchField liveChange="onReverseProxyListSearch" width="40%" />
+		                        </Toolbar>
+		                    </headerToolbar>                                         
+                        <StandardListItem title="{reverseProxyList>description}" description="{reverseProxyList>targetHost}{reverseProxyList>path}" type="Active" app:dataProviderName="{reverseProxyList>name}"/>
+                    </List>
+                </l:content>
+            </l:VerticalLayout>
+        </content>
+        <buttons>
+            <Button id="bShowMessagesProxyList" icon="sap-icon://message-popup" text="" type="Emphasized" press="showMessagePopover" visible="false" />
+            <Button id="bReverseProxyAdd" text="{i18n>AppList.reverseProxyAdd}" icon="sap-icon://add" press="onReverseProxyAdd" />
+            <Button id="bReverseProxyEdit" text="{i18n>AppList.reverseProxyEdit}" icon="sap-icon://edit" press="onReverseProxyChange" visible="false" />
+            <Button id="bReverseProxyDelete" text="{i18n>AppList.reverseProxyDelete}" icon="sap-icon://delete" press="onReverseProxyDelete" visible="false" />
+            <Button id="bReverseProxyCancel" text="{i18n>AppList.reverseProxyCancel}" icon="sap-icon://sys-cancel" press="onReverseProxyClose" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

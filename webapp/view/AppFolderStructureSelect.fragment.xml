@@ -1,0 +1,31 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <Dialog id="applicationFolderStructure" title="{i18n>AppDetail.folderStructureTitle}" contentHeight="400px">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <MessageStrip id="folderStructureStripText" text="" showIcon="false" showCloseButton="false" class="sapUiSmallMarginBottom">
+                </MessageStrip>
+                <Label text="{i18n>AppDetail.folderStructurePathText}" />
+                <Breadcrumbs id="folderStructureBreadcrumbs" currentLocationText="{i18n>AppDetail.folderStructureUndefined}" class="sapUiSmallMarginBottom">
+                </Breadcrumbs>
+                <Label text="{i18n>AppDetail.folderStructureListTitle}" design="Bold" />
+                <List id="folderStructureList" items="{applicationFolderStructure>/}" mode="SingleSelectMaster"  
+                    itemPress="onFolderStructureItemSelection" 
+                    class="sapUiNoContentPadding" noDataText="{i18n>AppDetail.folderStructureNoSubFolder}">
+                    <CustomListItem app:folderId="{applicationFolderStructure>id}" app:folderName="{applicationFolderStructure>name}" app:hasSubFolder="{applicationFolderStructure>hasSubFolder}" type="Active" >
+                        <HBox class="sapUiTinyMarginTopBottom">
+                            <core:Icon src="sap-icon://folder-blank" class="iconSize1 sapUiSmallMarginEnd" color="{
+                              path: 'applicationFolderStructure>hasSubFolder',
+                              formatter: '.formatter.getFolderStructureColor'
+                            }" />
+                            <Label text="{applicationFolderStructure>name}" />
+                        </HBox>
+                    </CustomListItem>
+                </List>
+            </VBox>
+        </content>
+        <buttons>
+            <Button id="bFolderStructureSelect" text="{i18n>AppDetail.folderStructureSelect}" icon="sap-icon://accept" press="" />
+            <Button id="bFolderStructureCancel" text="{i18n>AppDetail.folderStructureCancel}" icon="sap-icon://sys-cancel" press="onFolderStructureCancel" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

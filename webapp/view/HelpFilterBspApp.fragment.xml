@@ -1,0 +1,19 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<SelectDialog
+		title="{i18n>AppDetail.helperTitleBspApp}"
+		class="sapUiPopupWithPadding"
+		items="{path: 'bspApplicationsList>/applications',
+            sorter: { path: 'name' }}"
+		search="onValueHelpBspAppSearch"
+		confirm="onValueHelpBspAppFilterClose"
+		multiSelect="false"
+		cancel="onValueHelpBspAppFilterClose">
+		<StandardListItem
+			iconDensityAware="false"
+			iconInset="false"
+			title="{bspApplicationsList>name}"
+			description="{bspApplicationsList>description}" app:id="{bspApplicationsList>id}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

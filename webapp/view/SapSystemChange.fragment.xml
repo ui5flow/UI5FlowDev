@@ -1,0 +1,51 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+    <Dialog id="sapSystemChange" title="{i18n>AppDetail.sapSystemTitle}" contentWidth="700px">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <f:SimpleForm minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" labelSpanL="1" labelSpanM="1" emptySpanL="0" emptySpanM="0" columnsL="1" columnsM="1" class="editableForm">
+                    <f:content>
+
+                        <Label text="{i18n>AppDetail.sapSystemDescription}" >
+                            <layoutData>
+                                <l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+                            </layoutData>
+                        </Label>                          
+                        <Input id="sapSystemDescriptionText" value="" class="sapUiTinyMarginBottom" >
+                        <layoutData>
+                            <l:GridData span="L12 M12 S12" />
+                        </layoutData>
+                        </Input>
+
+                        <Label text="{i18n>AppDetail.sapSystemServerUrl}" >
+                            <layoutData>
+                                <l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+                            </layoutData>
+                        </Label>
+                        <Input id="sapSystemServerUrl" value="" class="sapUiTinyMarginBottom" valueStateText="{i18n>SapSystems.valueCheckUrl}">
+                            <layoutData>
+                                <l:GridData span="L8 M8 S8" />
+                            </layoutData>
+                        </Input>
+
+                        <Label text="{i18n>AppDetail.bspAppUrlPattern}" >
+                            <layoutData>
+                                <l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+                            </layoutData>
+                        </Label>
+                        <Input id="bspAppUrlPattern" value="" class="sapUiTinyMarginBottom" >
+                            <layoutData>
+                                <l:GridData span="L12 M12 S12" />
+                            </layoutData>
+                        </Input>
+
+                    </f:content>
+                </f:SimpleForm>
+            </VBox>
+        </content>
+        <buttons>
+            <Button id="bShowMessagesSapSystem" icon="sap-icon://message-popup" text="" type="Emphasized" press="showMessagePopover" visible="false" />
+            <Button id="bSapSystemSave" text="{i18n>AppDetail.save}" icon="sap-icon://accept" press="onSapSystemSave" />
+            <Button id="bSapSystemClose" text="{i18n>AppDetail.cancel}" icon="sap-icon://sys-cancel" press="onSapSystemClose" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

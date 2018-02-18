@@ -1,0 +1,246 @@
+{
+    "_version": "1.1.0",
+    "sap.app": {
+        "_version": "1.1.0",
+        "id": "com.oprtnl.ui5mng",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "applicationVersion": {
+            "version": "0.1.0"
+        },
+        "dataSources": {
+            "serverConfig": {
+                "uri": "",
+                "type": "JSON",
+                "settings": {
+                    "annotations": [],
+                    "localUri": ""
+                }
+            },             
+            "applicationsList": {
+                "uri": "",
+                "type": "JSON",
+                "settings": {
+                    "annotations": [],
+                    "localUri": ""
+                }
+            },
+            "applicationDetail": {
+                "uri": "",
+                "type": "JSON",
+                "settings": {
+                    "annotations": [],
+                    "localUri": ""
+                }
+            },
+            "deploySyncCheckList": {
+                "uri": "",
+                "type": "JSON",
+                "settings": {
+                    "annotations": [],
+                    "localUri": ""
+                }
+            },            
+            "applicationFolderStructure": {
+                "uri": "",
+                "type": "JSON",
+                "settings": {
+                    "annotations": [],
+                    "localUri": ""
+                }
+            },
+            "sapSystemsList": {
+                "uri": "",
+                "type": "JSON",
+                "settings": {
+                    "annotations": [],
+                    "localUri": ""
+                }
+            },
+            "reverseProxyList": {
+                "uri": "",
+                "type": "JSON",
+                "settings": {
+                    "annotations": [],
+                    "localUri": ""
+                }
+            },            
+            "bspApplicationsList": {
+                "uri": "",
+                "type": "JSON",
+                "settings": {
+                    "annotations": [],
+                    "localUri": ""
+                }
+            },
+            "sapPackagesList": {
+                "uri": "",
+                "type": "JSON",
+                "settings": {
+                    "annotations": [],
+                    "localUri": ""
+                }
+            },
+            "sapTransportsList": {
+                "uri": "",
+                "type": "JSON",
+                "settings": {
+                    "annotations": [],
+                    "localUri": ""
+                }
+            },
+            "sapDeploymentsHistory": {
+                "uri": "",
+                "type": "JSON",
+                "settings": {
+                    "annotations": [],
+                    "localUri": ""
+                }
+            },
+            "proxyHeaders": {
+                "uri": "",
+                "type": "JSON",
+                "settings": {
+                    "annotations": [],
+                    "localUri": ""
+                }
+            }              
+        }
+    },
+    "sap.ui": {
+        "_version": "1.1.0",
+        "technology": "UI5",
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        },
+        "supportedThemes": [
+            "sap_belize"
+        ]
+    },
+    "sap.ui5": {
+        "_version": "1.1.0",
+        "rootView": "com.oprtnl.ui5locserv.view.App",
+        "dependencies": {
+            "minUI5Version": "1.44.10",
+            "libs": {
+                "sap.m": {
+                    "minVersion": "1.44.10" 
+                },
+                "sap.ui.commons": {
+                    "minVersion": "1.44.10", 
+                    "lazy": true
+                },
+                "sap.ui.layout": {
+                    "minVersion": "1.44.10", 
+                    "lazy": true
+                }
+            }
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "com.oprtnl.ui5locserv.i18n.i18n"
+                }
+            },
+            "serverConfig": {
+                "dataSource": "serverConfig"
+            },            
+            "applicationsList": {
+                "dataSource": "applicationsList"
+            },
+            "applicationDetail": {
+                "dataSource": "applicationDetail"
+            },
+            "applicationFolderStructure": {
+                "dataSource": "applicationFolderStructure"
+            },
+            "sapSystemsList": {
+                "dataSource": "sapSystemsList"
+            },
+            "reverseProxyList": {
+                "dataSource": "reverseProxyList"
+            },            
+            "deploySyncCheckList": {
+                "dataSource": "deploySyncCheckList"
+            },
+            "bspApplicationsList": {
+                "dataSource": "bspApplicationsList"
+            },
+            "sapPackagesList": {
+                "dataSource": "sapPackagesList"
+            },
+            "sapTransportsList": {
+                "dataSource": "sapTransportsList"
+            },
+            "sapDeploymentsHistory": {
+                "dataSource": "sapDeploymentsHistory"
+            },
+            "proxyHeaders": {
+                "dataSource": "proxyHeaders"
+            }  
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "viewPath": "com.oprtnl.ui5locserv.view",
+                "controlId": "App",
+                "controlAggregation": [
+                    "pages"
+                ],
+                "transition": "slide",
+                "bypassed": {
+                    "target": [
+                        "notFound"
+                    ]
+                }
+            },
+            "routes": [{
+                "pattern": "",
+                "name": "root",
+                "target": [
+                    "appList"
+                ]
+            },{
+                "pattern": "apps",
+                "name": "appList",
+                "target": [
+                    "appList"
+                ]
+            },{
+                "pattern": "apps/{appName}",
+                "name": "appDetail",
+                "target": [
+                    "appDetail"
+                ]
+            }],
+            "targets": {
+                "appList": {
+                    "viewName": "AppList",
+                    "viewLevel": 1,
+                    "controlAggregation": "pages"
+                },
+                "appDetail": {
+                    "viewName": "AppDetail",
+                    "viewLevel": 1,
+                    "controlAggregation": "pages"
+                },                
+                "notFound": {
+                    "viewName": "NotFound",
+                    "viewLevel": 1,
+                    "controlAggregation": "pages"
+                }
+            }
+        },
+        "resources": {
+            "css": [{
+                "uri": "css/styles.css"
+            }]
+        }
+    }
+}

@@ -1,0 +1,7 @@
+<mvc:View controllerName="com.oprtnl.ui5locserv.controller.App" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" height="100%">
+    <Shell backgroundColor="#FFFFFF"  appWidthLimited="true" >
+        <app>
+            <App id="App" />
+        </app>
+    </Shell>
+</mvc:View>
