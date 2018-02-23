@@ -27,16 +27,18 @@ sap.ui.define([
 
             var that = this;
 
+            // Get server config
+            var serverConfigPath = this.getGlobalProperty("/host") + this.getGlobalProperty("/route-serverConfig");
+            this.getView().getModel("serverConfig").loadData(serverConfigPath);
+            this.getView().getModel("serverConfig").refresh(true); 
+
+
+            
             // Get applications
             var applicationsPath = this.getGlobalProperty("/host") + this.getGlobalProperty("/route-applicationsList");
             this.getView().getModel("applicationsList").loadData(applicationsPath);
             this.getView().getModel("applicationsList").refresh(true);
-
-            // Get server config
-            var serverConfigPath = this.getGlobalProperty("/host") + this.getGlobalProperty("/route-serverConfig");
-            this.getView().getModel("serverConfig").loadData(serverConfigPath);
-            this.getView().getModel("serverConfig").refresh(true);            
-            
+                
             // Get SAP systems    
             var sapSystemsPath = this.getGlobalProperty("/host") + this.getGlobalProperty("/route-sapSystemsList");
             this.getView().getModel("sapSystemsList").loadData(sapSystemsPath);
@@ -80,6 +82,13 @@ sap.ui.define([
             oRouter.navTo("appDetail", { appName: oEvent.getParameters().listItem.data("appNameItem") });
         },
 
+        onConfigInitClose: function() {
+        
+            this.valuesCleanup(["assetsPath"]);   
+            this.messagesReset();
+            this.getView().byId("configInit").close();
+        },
+
         onApplicationAddNewOpen: function() {
 
             var oView = this.getView();
@@ -102,12 +111,15 @@ sap.ui.define([
 
         onNewAppClose: function() {
             this.valuesCleanup(["newAppName", "newAppDescription"]);   
+            this.messagesReset();
             this.getView().byId("AddNew").close();
         },
         
         onNewAppSave: function() {
 
             var that = this;
+
+            this.messagesReset();
 
             if (!this.checkInputValue(["newAppName"])) {
               return false;

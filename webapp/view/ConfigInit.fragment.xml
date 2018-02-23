@@ -1,0 +1,66 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+    <Dialog id="configDisplay" title="{i18n>Config.configTitle}" contentWidth="700px">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <f:SimpleForm minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" labelSpanL="1" labelSpanM="1" emptySpanL="0" emptySpanM="0" columnsL="1" columnsM="1" class="editableForm">
+                    <f:content>
+                        <Label text="{i18n>Config.appsDir}" >
+                            <layoutData>
+                                <l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+                            </layoutData>
+                        </Label>                          
+                        <Input value="{serverConfig>/appsDir}" class="sapUiTinyMarginBottom" editable="false" >
+                        <layoutData>
+                            <l:GridData span="L12 M12 S12" />
+                        </layoutData>
+                        </Input>
+                        <Label text="{i18n>Config.versionsDir}" >
+                            <layoutData>
+                                <l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+                            </layoutData>
+                        </Label>                          
+                        <Input value="{serverConfig>/versionsDir}" class="sapUiTinyMarginBottom" editable="false" >
+                        <layoutData>
+                            <l:GridData span="L12 M12 S12" />
+                        </layoutData>
+                        </Input>   
+                        <Label text="{i18n>Config.appsData}" >
+                            <layoutData>
+                                <l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+                            </layoutData>
+                        </Label>                          
+                        <Input value="{serverConfig>/appsData}" class="sapUiTinyMarginBottom" editable="false" >
+                        <layoutData>
+                            <l:GridData span="L12 M12 S12" />
+                        </layoutData>
+                        </Input>         
+                        <Label text="{i18n>Config.sapSystems}" >
+                            <layoutData>
+                                <l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+                            </layoutData>
+                        </Label>                          
+                        <Input value="{serverConfig>/sapSystems}" class="sapUiTinyMarginBottom" editable="false" >
+                        <layoutData>
+                            <l:GridData span="L12 M12 S12" />
+                        </layoutData>
+                        </Input>         
+                        <Label text="{i18n>Config.reverseProxies}" >
+                            <layoutData>
+                                <l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+                            </layoutData>
+                        </Label>                          
+                        <Input value="{serverConfig>/reverseProxies}" class="sapUiTinyMarginBottom" editable="false" >
+                        <layoutData>
+                            <l:GridData span="L12 M12 S12" />
+                        </layoutData>
+                        </Input>                                                                                   
+                    </f:content>
+                </f:SimpleForm>
+            </VBox>
+        </content>
+        <buttons>
+            <Button id="bShowMessagesConfigInit" icon="sap-icon://message-popup" text="" type="Emphasized" press="showMessagePopover" visible="false" />
+            <Button id="bConfigDisplayClose" text="{i18n>AppDetail.cancel}" icon="sap-icon://sys-cancel" press="onConfigDisplayClose" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

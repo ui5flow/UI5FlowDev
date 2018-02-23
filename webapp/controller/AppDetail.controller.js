@@ -1395,7 +1395,7 @@ sap.ui.define([
 
             this.deploymentConfig["requestHeaders"] = { "Authorization": "Basic " + btoa(this.getInputValue("sapDeployUser") + ":" + this.getInputValue("sapDeployPassword")) };
 
-
+            this.getView().byId("deploymentBasicAuth").setBusyIndicatorDelay(0);
             this.setBusy("deploymentBasicAuth", true);
 
             var oPostData = {
@@ -1416,6 +1416,7 @@ sap.ui.define([
                     that.getView().getModel("bspApplicationsList").setData(oResponse);
 
                     that.messagesReset();
+                    
                     that.setBusy("deploymentBasicAuth", false);
                     that.valuesCleanup(["sapSystemDescription", "sapDeployUser", "sapDeployPassword"]);
                     that.getView().byId("deploymentBasicAuth").close();
@@ -1432,7 +1433,8 @@ sap.ui.define([
 
                     }
 
-                    that.valuesCleanup(["bspAppNameNew", "bspAppNameChange", "bspAppPackage", "deployTransport"]);
+                    that.messagesReset();
+                    that.valuesCleanup(["bspAppNameNew", "bspAppNameChange", "bspAppPackage", "deployTransport", "bspAppDescription"]);
                     that.oDeployBsp.open();
 
                 },

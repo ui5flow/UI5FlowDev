@@ -112,6 +112,9 @@ sap.ui.define([
                 case "onServiceProxy":
                     this.onReverseProxyList();
                     break;
+                case "onConfigInitDisplay":
+                    this.onConfigInitDisplay();
+                    break;                    
             }
         },
 
@@ -322,6 +325,28 @@ sap.ui.define([
             return true;
         },
 
+        onConfigInitDisplay: function() {
+            var oView = this.getView();
+            this.oConfigDisplay = oView.byId("configDisplay");
+
+            // Create dialog lazily
+            if (!this.oConfigDisplay) {
+                // Create dialog via fragment factory
+                this.oConfigDisplay = sap.ui.xmlfragment(oView.getId(), "com.oprtnl.ui5locserv.view.ConfigInit", this);
+                oView.addDependent(this.oConfigDisplay);
+                // forward compact/cozy style into dialog
+                jQuery.sap.syncStyleClass(this.getView().getController().getContentDensityClass(), this.getView(), this.oConfigDisplay);
+            }
+
+            this.oConfigDisplay.open();            
+        },
+
+        onConfigDisplayClose: function() {
+
+            this.messagesReset();
+            this.getView().byId("configDisplay").close();            
+        },
+
         onReverseProxyList: function() {
             var oView = this.getView();
             this.oProxyList = oView.byId("proxyList");
@@ -342,6 +367,7 @@ sap.ui.define([
 
             this.valuesCleanup(["reverseProxyDescriptionText", "reverseProxyTargetHost", "reverseProxyPath", "reverseProxyPathRewriteFrom", "reverseProxyPathRewriteTo"]);
             this.requestHeaders = [];
+            this.getView().getModel("proxyHeaders").setData(this.requestHeaders);
             this.messagesReset();
         },
 
@@ -357,6 +383,8 @@ sap.ui.define([
                 // forward compact/cozy style into dialog
                 jQuery.sap.syncStyleClass(this.getView().getController().getContentDensityClass(), this.getView(), this.oReverseProxyChange);
             }
+
+            this.valuesReverseProxyDataReset();
 
             this.reverseProxyActionType = "POST";
             this.requestHeaders = [];
@@ -554,10 +582,12 @@ sap.ui.define([
                     that.setBusy("reverseProxyChange", false);
 
                     that.valuesReverseProxyDataReset();
+
                     that.getView().byId("dataProviderList").removeSelections();
                     that.selectedDataProviderSetup = undefined;
                     that.toggleDataProviderSetupButtons();
 
+                    that.messagesReset();
                     that.getView().byId("reverseProxyChange").close();
                     that.showMessageToast(that.responseParse(oResponse));
                 },
@@ -573,6 +603,7 @@ sap.ui.define([
             this.selectedDataProviderSetup = undefined;
             this.getView().byId("dataProviderList").removeSelections();
             this.toggleDataProviderSetupButtons();
+            this.valuesReverseProxyDataReset();
             this.messagesReset();
             this.getView().byId("proxyList").close();
         },
@@ -630,13 +661,7 @@ sap.ui.define([
 
             try {
                 var stdMessage = { status: "", message: "", messageId: "" };
-                if (res.getResponseHeader('Content-Type')) {
-                    if (res.getResponseHeader('Content-Type') == "text/html") {
-                        stdMessage.status = "Error";
-                        stdMessage.message = "Unknown error with HTTP Status:" + res.status;
-                        return stdMessage;
-                    }
-                } else if (res.responseJSON) {
+                if (res.responseJSON) {
                     var response = res.responseJSON;
                     if (typeof response == 'object') {
                         if (response.status) {
@@ -673,9 +698,17 @@ sap.ui.define([
                         }
                     }
                 } else {
-                    stdMessage.status = "Error";
-                    stdMessage.message = "Unknown error with HTTP Status:" + res.status;
-                    return stdMessage;
+                    if (res.getResponseHeader('Content-Type')) {
+                        if (res.getResponseHeader('Content-Type') == "text/html") {
+                            stdMessage.status = "Error";
+                            stdMessage.message = "Unknown error with HTTP Status:" + res.status;
+                            return stdMessage;
+                        }
+                    } else {
+                        stdMessage.status = "Error";
+                        stdMessage.message = "Unknown error with HTTP Status:" + res.status;
+                        return stdMessage;
+                    }
                 }
 
 
@@ -688,9 +721,19 @@ sap.ui.define([
 
             var controlId = controlId ? controlId : "bShowMessages";
             var that = this;
-            if (isInit) {
-                this.messages = messages;
+
+            if (!this.messages) {
+                this.messages = [];
             }
+
+            if (isInit != undefined) {
+                if (isInit) {
+                    this.messages = messages;
+                } else {
+                    this.messages = this.messages.concat(messages);
+                }
+            }
+
             var oMessagePopoverItem = {};
             if (!this.oMessagePopover) {
                 this.oMessagePopover = new MessagePopover({
@@ -761,6 +804,16 @@ sap.ui.define([
             if (this.getView().byId("bShowMessagesSapSystem")) {
                 this.getView().byId("bShowMessagesSapSystem").setVisible(false);
             }
+            if (this.getView().byId("bShowMessagesConfig")) {
+                this.getView().byId("bShowMessagesConfig").setVisible(false);
+            } 
+            if (this.getView().byId("bShowMessagesConfigInit")) {
+                this.getView().byId("bShowMessagesConfigInit").setVisible(false);
+            }   
+            if (this.getView().byId("bShowMessagesDeploymentAuthentication")) {
+                this.getView().byId("bShowMessagesDeploymentAuthentication").setVisible(false);
+            }  
+
         }
 
 
