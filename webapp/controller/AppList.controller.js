@@ -153,7 +153,7 @@ sap.ui.define([
                     that.getView().byId("AddNew").close();
                     that.showMessageToast(that.responseParse(oResponse));
 
-                    that.getRouter(that.getView()).navTo("ui5AppDetail", { appName: that.responseParse(oResponse).name });
+                    that.getRouter(that.getView()).navTo("appDetail", { appName: that.responseParse(oResponse).name });
                 },
                 error: function(oResponse) {
                     that.setBusy("AddNew", false);

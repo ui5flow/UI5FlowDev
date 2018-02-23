@@ -60,19 +60,14 @@ sap.ui.define([
 
             var appDetailData = {};
 
-            var appListData = this.getView().getModel("applicationsList").getData();
-            if (!appListData.applications) {
-                var sPath = this.getGlobalProperty("/host") + this.getGlobalProperty("/route-applicationsList");
-                this.getView().getModel("applicationsList").loadData(sPath);
-                this.getView().getModel("applicationsList").refresh(true);
+            //
+            var sPath = this.getGlobalProperty("/host") + this.getGlobalProperty("/route-applicationsList");
+            this.getView().getModel("applicationsList").loadData(sPath);
 
-                this.getView().getModel("applicationsList").attachEventOnce("requestCompleted", function(oEvent) {
-                    this.getDetailData(appName);
-                }, this);
-
-
-            } else {
-
+            var that = this;
+            this.getView().getModel("applicationsList").attachEventOnce("requestCompleted", function(oEvent) {
+                
+                var appListData = that.getView().getModel("applicationsList").getData();
                 if (appListData.applications) {
                     for (var i = 0, iLength = appListData.applications.length; i < iLength; i++) {
                         if (appListData.applications[i].name === appName) {
@@ -80,9 +75,10 @@ sap.ui.define([
                         }
                     }
                 }
-                this.getView().getModel("applicationDetail").setData(appDetailData);
-                this.getView().getModel("applicationDetail").refresh(true);
-            }
+                that.getView().getModel("applicationDetail").setData(appDetailData);
+                that.getView().getModel("applicationDetail").refresh(true);
+
+            }, this);
 
         },
 
@@ -97,7 +93,7 @@ sap.ui.define([
                 this.oDeleteConfirm = sap.ui.xmlfragment(oView.getId(), "com.oprtnl.ui5locserv.view.DeleteConfirmation", this);
                 oView.addDependent(this.oDeleteConfirm);
                 // forward compact/cozy style into dialog
-                jQuery.sap.syncStyleClass(this.getView().getController().getContentDensityClass(), this.getView(), this.oDeleteConfirm);                
+                jQuery.sap.syncStyleClass(this.getView().getController().getContentDensityClass(), this.getView(), this.oDeleteConfirm);
             }
 
             this.valuesAppDeleteReset();
@@ -1065,12 +1061,12 @@ sap.ui.define([
             document.body.removeChild(textArea);
 
         },
-        
+
         onBspUrlLink: function(oEvent) {
 
             var appUrl = this.bspAppUrlView.getAggregation("content")[0].getValue();
             window.open(appUrl, "_blank");
-        },  
+        },
 
         onVersionChange: function() {
             var oView = this.getView();
@@ -1416,7 +1412,7 @@ sap.ui.define([
                     that.getView().getModel("bspApplicationsList").setData(oResponse);
 
                     that.messagesReset();
-                    
+
                     that.setBusy("deploymentBasicAuth", false);
                     that.valuesCleanup(["sapSystemDescription", "sapDeployUser", "sapDeployPassword"]);
                     that.getView().byId("deploymentBasicAuth").close();
