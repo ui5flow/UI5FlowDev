@@ -1,7 +1,7 @@
 {
-  "name": "UI5FlowDev",
-  "version": "1.1.0",
-  "description": "UI5FlowDev allows you to manage and run your UI5 applications on a local server with reverse-proxy support. It also enables you to build your applications and deploy them to SAP NetWeaver ABAP.",
+  "name": "ui5flowdev",
+  "version": "1.1.1",
+  "description": "UI5FlowDev enables you to manage and run your UI5 applications on a local server with reverse-proxy support. It also provides you the option to build your applications and deploy them to SAP NetWeaver ABAP. ",
   "author": "peter.orgon@ui5flow.com",
   "license": "MIT",
   "dependencies": {
