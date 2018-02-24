@@ -13,7 +13,7 @@ $ npm install ui5flowdev --global
 
 UI5FlowDev requires [Node.js](https://nodejs.org/) v6+ to run.
 
-### UI5FlowDev start
+## UI5FlowDev start
 
 Open your console and type
 
@@ -24,7 +24,7 @@ This command will start the server on HTTP port you defined in the initial setup
 
 In case of first start, simple configuration wizard is started. You have to specify the server port and where you want to store your UI5FlowDev development artifacts. 
 
-### UI5FlowDev stop
+## UI5FlowDev stop
 
 Ctrl+C in your console and confirm process termiantion with 'Y'.
 
