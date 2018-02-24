@@ -41,8 +41,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": "https://github.com/ui5flow/ui5flow-local.git",
-  "homepage": "https://github.com/ui5flow/ui5flow-local",
+  "repository": "https://github.com/ui5flow/UI5FlowDev.git",
+  "homepage": "https://github.com/ui5flow/UI5FlowDev.git",
   "bin": {
     "ui5flow": "./bin/start.js"
   }
