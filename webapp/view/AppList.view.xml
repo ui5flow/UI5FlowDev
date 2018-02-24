@@ -17,7 +17,7 @@
         <content>
             <l:VerticalLayout width="100%" class="sapUiNoContentPadding">
                 <List id="appList" backgroundDesign="Transparent" mode="SingleSelectMaster" growing="true" growingThreshold="10" growingScrollToLoad="true" items="{path: 'applicationsList>/applications', sorter : {
-                                            path : 'updated_at', descending: true 
+                                            path : 'display_name', descending: false 
                                          }}" noDataText="{i18n>AppsList.noDataInList}" itemPress="onCustomListItemPress">
                     <headerToolbar>
                         <Toolbar>

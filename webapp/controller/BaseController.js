@@ -603,7 +603,7 @@ sap.ui.define([
             this.selectedDataProviderSetup = undefined;
             this.getView().byId("dataProviderList").removeSelections();
             this.toggleDataProviderSetupButtons();
-            this.valuesReverseProxyDataReset();
+            //this.valuesReverseProxyDataReset();
             this.messagesReset();
             this.getView().byId("proxyList").close();
         },

@@ -8,7 +8,7 @@
                             <MenuItem id="menuSapSystems" text="{i18n>AppList.menuSapSystems}" icon="sap-icon://sap-logo-shape" app:action="onSapSystemsList" />
                             <MenuItem id="menuServiceProxy" text="{i18n>AppList.menuServiceProxy}" icon="sap-icon://repost" app:action="onServiceProxy" />
                             <MenuItem id="menuConfigInitDisplay" text="{i18n>AppList.configDisplay}" icon="sap-icon://action-settings" app:action="onConfigInitDisplay" /> 
-                                                        
+
                         </items>
                     </Menu>
                 </menu>
