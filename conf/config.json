@@ -1,10 +1,10 @@
 {
-    "port": "8001",
-    "appsData": "C:\\Users\\peter\\Dropbox\\Work\\ui5flow\\DEV-UI5FlowDev\\assets\\data\\apps.json",    
-    "appsDir": "C:\\Users\\peter\\Dropbox\\Work\\ui5flow\\DEV-UI5FlowDev\\assets\\apps",
-    "versionsDir": "C:\\Users\\peter\\Dropbox\\Work\\ui5flow\\DEV-UI5FlowDev\\assets\\versions",  
-    "sapSystems": "C:\\Users\\peter\\Dropbox\\Work\\ui5flow\\DEV-UI5FlowDev\\assets\\data\\sapSystems.json",   
-    "reverseProxies": "C:\\Users\\peter\\Dropbox\\Work\\ui5flow\\DEV-UI5FlowDev\\assets\\data\\reverseProxies.json",   
+    "port": "",
+    "appsData": "",    
+    "appsDir": "",
+    "versionsDir": "",  
+    "sapSystems": "",   
+    "reverseProxies": "",   
     "bspAppUrlPattern": "{applicationServerUrl}/sap/bc/ui5_ui5/sap/{bspApplication}/index.html",
-    "initialized": true
+    "initialized": false
 }
