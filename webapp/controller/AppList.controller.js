@@ -103,14 +103,14 @@ sap.ui.define([
                 jQuery.sap.syncStyleClass(this.getView().getController().getContentDensityClass(), this.getView(), oAddNewDialog);              
             } 
 
-            this.valuesCleanup(["newAppName", "newAppDescription"]);   
+            this.valuesCleanup(["newAppName", "newAppDescription", "newAppPath"]);   
             this.messagesReset();
 
             oAddNewDialog.open();
         },
 
         onNewAppClose: function() {
-            this.valuesCleanup(["newAppName", "newAppDescription"]);   
+            this.valuesCleanup(["newAppName", "newAppDescription", "newAppPath"]);   
             this.messagesReset();
             this.getView().byId("AddNew").close();
         },
