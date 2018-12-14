@@ -1,0 +1,19 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="{i18n>AppDetail.helperTitleTag}"
+		class="sapUiPopupWithPadding"
+		items="{path: 'applicationDetail>/all_tags/',
+            sorter: { path: 'name' }}"
+		search="onValueHelpTagSearch"
+		confirm="onValueHelpTagFilterClose"
+		multiSelect="false"
+		cancel="onValueHelpTagFilterClose">
+		<StandardListItem
+			iconDensityAware="false"
+			iconInset="false"
+			title="{applicationDetail>name}"
+			description="" />
+	</SelectDialog>
+</core:FragmentDefinition>

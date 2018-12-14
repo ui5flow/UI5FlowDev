@@ -4,20 +4,20 @@
             <MenuButton text="{i18n>AppList.menuSettings}" icon="sap-icon://settings" >
                 <menu>
                     <Menu itemSelected="onUserMenuAction">
-                        <items>                           
+                        <items>
                             <MenuItem id="menuSapSystems" text="{i18n>AppList.menuSapSystems}" icon="sap-icon://sap-logo-shape" app:action="onSapSystemsList"/>
-                            <MenuItem id="menuServiceProxy" text="{i18n>AppList.menuServiceProxy}" icon="sap-icon://repost" app:action="onServiceProxy" /> 
-                            <MenuItem id="menuConfigInitDisplay" text="{i18n>AppList.configDisplay}" icon="sap-icon://action-settings" app:action="onConfigInitDisplay" />                             
-                                                       
+                            <MenuItem id="menuServiceProxy" text="{i18n>AppList.menuServiceProxy}" icon="sap-icon://repost" app:action="onServiceProxy" />
+                            <MenuItem id="menuConfigInitDisplay" text="{i18n>AppList.configDisplay}" icon="sap-icon://action-settings" app:action="onConfigInitDisplay" />
+
                         </items>
                     </Menu>
                 </menu>
             </MenuButton>
-        </headerContent>        
+        </headerContent>
         <content>
             <l:VerticalLayout width="100%" class="sapUiNoContentPadding">
                 <List id="appList" backgroundDesign="Transparent" mode="SingleSelectMaster" growing="true" growingThreshold="10" growingScrollToLoad="true" items="{path: 'applicationsList>/applications', sorter : {
-                                            path : 'display_name', descending: false 
+                                            path : 'display_name', descending: false
                                          }}" noDataText="{i18n>AppsList.noDataInList}" itemPress="onCustomListItemPress">
                     <headerToolbar>
                         <Toolbar>
@@ -38,6 +38,15 @@
                                  }" emphasized="true" class="sapUiTinyMarginBottom" press="onAppTitlePress" app:appName="{applicationsList>name}"  />
                                         </HBox>
                                         <Text text="{applicationsList>description}" class="sapUiSmallMarginBottom" />
+                                        <Tokenizer id="appTags" width="100%" editable="false" class="sapUiTinyMarginTop"
+                                          tokens="{
+                                            path: 'applicationsList>tags/',
+                                            sorter: { path: 'name' },
+                                            templateShareable: false
+                                          }">
+                                          <Token key="{applicationsList>name}" text="{applicationsList>name}" />
+                                        </Tokenizer>
+                                        <Text text="{applicationsList>tags_search_string}" visible="false"/>
                                     </VBox>
                                 </l:BlockLayoutCell>
                                 <l:BlockLayoutCell class="sapUiNoContentPadding" width="1">
@@ -51,7 +60,7 @@
                                                                     path: 'applicationsList>updated_at',
                                                                     formatter: '.formatter.getFormattedDateTime'
                                                                     }" />
-                                            <Link class="sapUiTinyMarginBottom" text="{applicationsList>app_directory}" press="onRelUrlPress" app:appUrl="{applicationsList>app_url}"/>                                                                   
+                                            <Link class="sapUiTinyMarginBottom" text="{applicationsList>app_directory}" press="onRelUrlPress" app:appUrl="{applicationsList>app_url}"/>
                                         </VBox>
                                     </HBox>
                                 </l:BlockLayoutCell>

@@ -1,12 +1,12 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
     <f:SimpleForm width="70%" minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" labelSpanL="2" labelSpanM="2" emptySpanL="1" emptySpanM="1" columnsL="1" columnsM="1" class="editableForm">
-        <f:content> 
+        <f:content>
             <Label text="{i18n>AppDetail.appName}" class="sapUiTinyMarginBottom"/>
-            <Text id="appName" value="" text="{applicationDetail>name}" 
+            <Text id="appName" value="" text="{applicationDetail>name}"
                  />
-            <Label text="{i18n>AppDetail.appPath}" class="sapUiTinyMarginBottom"/>  
+            <Label text="{i18n>AppDetail.appPath}" class="sapUiTinyMarginBottom"/>
             <Link id="appPath" text="{applicationDetail>path}" press="onPathPress" app:appPath="{applicationDetail>path}" />
-            <Label text="{i18n>AppDetail.appRelUrl}" class="sapUiTinyMarginBottom"/>  
+            <Label text="{i18n>AppDetail.appRelUrl}" class="sapUiTinyMarginBottom"/>
             <Link id="appUrl" value="" text="{applicationDetail>app_url}" press="onRelUrlPress" app:appUrl="{applicationDetail>app_url}" />
             <Label text="{i18n>AppDetail.displayName}" class="sapUiTinyMarginBottom" />
             <Text id="displayName" value="" text="{applicationDetail>display_name}"/>
@@ -14,6 +14,14 @@
             <Text id="appDescription" text="{applicationDetail>description}"/>
             <Label text="{i18n>AppDetail.appRemoteGitUrl}" class="sapUiTinyMarginBottom" />
             <Text id="appRemoteGitUrl" value="" text="{applicationDetail>remote_git_url}"/>
+            <Label text="{i18n>AppDetail.appTags}" class="sapUiTinyMarginBottom" />
+            <Tokenizer id="appTags" width="100%" editable="false" class="sapUiTinyMarginTop"
+              tokens="{
+                path: 'applicationDetail>tags/',
+                sorter: { path: 'name' }
+              }">
+              <Token key="{applicationDetail>name}" text="{applicationDetail>name}" />
+            </Tokenizer>
         </f:content>
     </f:SimpleForm>
 </core:FragmentDefinition>

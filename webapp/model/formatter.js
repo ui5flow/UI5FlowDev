@@ -35,32 +35,32 @@ sap.ui.define([], function() {
         getSyncObjectFolfer: function(type) {
             if(type == "folder") {
                 return true;
-            } 
-            return false;             
+            }
+            return false;
         },
 
         getSyncObjectFile: function(type) {
             if(type == "file") {
                 return true;
-            } 
-            return false;             
+            }
+            return false;
         },
 
         setLastDeployment: function(lastDeployment) {
             if(lastDeployment) {
                 return true;
-            } 
-            return false;             
+            }
+            return false;
         },
 
         deploySyncStatus: function(status) {
             switch(status) {
-                case "create": 
+                case "create":
                     return "Success";
-                case "update": 
-                    return "Warning";    
-                case "delete": 
-                    return "Error";                                       
+                case "update":
+                    return "Warning";
+                case "delete":
+                    return "Error";
             }
         },
 
@@ -71,12 +71,12 @@ sap.ui.define([], function() {
         deploySyncStatusText: function(status) {
             var resourceBundle = this.getView().getModel("i18n").getResourceBundle();
             switch(status) {
-                case "create": 
+                case "create":
                     return resourceBundle.getText("AppDetail.syncObjectTextNew");
-                case "update": 
-                    return resourceBundle.getText("AppDetail.syncObjectTextChange");    
-                case "delete": 
-                    return resourceBundle.getText("AppDetail.syncObjectTextDelete");                                       
+                case "update":
+                    return resourceBundle.getText("AppDetail.syncObjectTextChange");
+                case "delete":
+                    return resourceBundle.getText("AppDetail.syncObjectTextDelete");
             }
         },
 
@@ -87,6 +87,6 @@ sap.ui.define([], function() {
                 }
             }
             return titleText;
-        }        
+        }
     };
 });

@@ -1,19 +1,38 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
     <f:SimpleForm width="70%" minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" labelSpanL="2" labelSpanM="2" emptySpanL="1" emptySpanM="1" columnsL="1" columnsM="1" class="editableForm">
-        <f:content> 
+        <f:content>
             <Label text="{i18n>AppDetail.appName}" class="sapUiTinyMarginBottom"/>
             <Input id="appName" value="{applicationDetail>name}" enabled="true" editable="false" />
             <Label text="{i18n>AppDetail.appPath}" class="sapUiTinyMarginBottom"/>
-            <Link id="appPath" text="{applicationDetail>path}" 
-                 press="onPathPress" app:appPath="{applicationDetail>path}"/> 
-            <Label text="{i18n>AppDetail.appRelUrl}" class="sapUiTinyMarginBottom"/>  
+            <Link id="appPath" text="{applicationDetail>path}"
+                 press="onPathPress" app:appPath="{applicationDetail>path}"/>
+            <Label text="{i18n>AppDetail.appRelUrl}" class="sapUiTinyMarginBottom"/>
             <Input id="appUrl" value="{applicationDetail>app_url}" />
             <Label text="{i18n>AppDetail.displayName}" class="sapUiTinyMarginBottom"/>
             <Input id="displayName" value="{applicationDetail>display_name}" />
             <Label text="{i18n>AppDetail.appDescription}" class="sapUiTinyMarginBottom"/>
             <TextArea id="appDescription" value="{applicationDetail>description}" growing="true" rows="5" growingMaxLines="10" width="100%"/>
             <Label text="{i18n>AppDetail.appRemoteGitUrl}" class="sapUiTinyMarginBottom" />
-            <Input id="appRemoteGitUrl" value="{applicationDetail>remote_git_url}" />            
+            <Input id="appRemoteGitUrl" value="{applicationDetail>remote_git_url}" />
+            <Label text="{i18n>AppDetail.appTags}" class="sapUiTinyMarginBottom" />
+            <Tokenizer id="appTags" width="100%" editable="true" class="sapUiTinyMarginTop" tokenChange="onTagDelete"
+              tokens="{
+                path: 'applicationDetail>tags/',
+                sorter: { path: 'name' }
+              }">
+              <Token key="{applicationDetail>name}" text="{applicationDetail>name}" />
+            </Tokenizer>
+            <Label text="{i18n>AppDetail.appNewTag}" class="sapUiTinyMarginBottom" />
+            <Input id="appAddTag" value="" submit="onNewAppTag" showSuggestion="true" showValueHelp="true" suggestionItemSelected="onTagSuggestionSelected" valueHelpRequest="onValueHelpTag" suggestionItems="{applicationDetail>all_tags/}">
+                <suggestionItems>
+    					     <core:Item text="{applicationDetail>name}" />
+    				    </suggestionItems>
+            </Input>
+            <Button text="Add" press="onNewAppTag">
+              <layoutData>
+                <l:GridData span="XL1 L2 M2 S4" />
+              </layoutData>
+            </Button>
         </f:content>
     </f:SimpleForm>
 </core:FragmentDefinition>

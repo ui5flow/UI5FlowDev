@@ -7,7 +7,7 @@
                         <items>
                             <MenuItem id="menuSapSystems" text="{i18n>AppList.menuSapSystems}" icon="sap-icon://sap-logo-shape" app:action="onSapSystemsList" />
                             <MenuItem id="menuServiceProxy" text="{i18n>AppList.menuServiceProxy}" icon="sap-icon://repost" app:action="onServiceProxy" />
-                            <MenuItem id="menuConfigInitDisplay" text="{i18n>AppList.configDisplay}" icon="sap-icon://action-settings" app:action="onConfigInitDisplay" /> 
+                            <MenuItem id="menuConfigInitDisplay" text="{i18n>AppList.configDisplay}" icon="sap-icon://action-settings" app:action="onConfigInitDisplay" />
 
                         </items>
                     </Menu>
@@ -55,12 +55,12 @@
                                             </HBox>
                                         </VBox>
                                     </Panel>
-                                    <l:VerticalLayout id="versionVertLayout" class="sapUiNoContentPadding" width="100%">
+                                    <l:VerticalLayout id="versionVertLayout"  width="100%">
                                         <l:content>
                                             <List id="versionList" items="{path: 'applicationDetail>versions/', sorter : {
-                                            path : 'updated_at', descending: true 
-                                         }}" mode="SingleSelectLeft" includeItemInSelection="true" selectionChange="onVersionItemSelection">
-                                                <CustomListItem app:versionId="{applicationDetail>version_directory}">
+                                            path : 'updated_at', descending: true
+                                         }}" mode="SingleSelectLeft" includeItemInSelection="true" selectionChange="onVersionItemSelection" class="sapUiNoContentPadding">
+                                                <CustomListItem app:versionId="{applicationDetail>version_directory}" class="sapUiContentPadding">
                                                     <VBox>
                                                         <HBox>
                                                             <VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" width="70%">

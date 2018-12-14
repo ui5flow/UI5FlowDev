@@ -5,7 +5,7 @@
 		title="{i18n>AppDetail.helperTitleBspApp}"
 		class="sapUiPopupWithPadding"
 		items="{path: 'bspApplicationsList>/applications',
-            sorter: { path: 'name' }}"
+            sorter: { path: 'name', descending: true }}"
 		search="onValueHelpBspAppSearch"
 		confirm="onValueHelpBspAppFilterClose"
 		multiSelect="false"
